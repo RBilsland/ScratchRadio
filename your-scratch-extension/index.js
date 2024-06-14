@@ -45,6 +45,7 @@ class MicroBitRadio {
         this._receivedStrings = [];
         this._receivedValuePairs = [];
         this._receivedData = {};
+        this._heartbeatRecevied = false;
 
         if (window.confirm('Click ok and then select the Micro:bit that is the Radio Gateway')) {
             uBitWebUSB.connectDevice(this, this.eventHandler);
@@ -93,6 +94,7 @@ class MicroBitRadio {
                         break;
                     case ReceivedCommands.HEARTBEAT:
                         instance._lastHeartbeat = new Date();
+                        instance._heartbeatRecevied = true;
                         break;
                     case ReceivedCommands.ON_RADIO_RECEIVED_NUMBER:
                         instance._receivedNumbers.push({
@@ -131,97 +133,97 @@ const MicrobitRadioTransmitSerialNumber = {
 }
 
 const MicrobitRadioEventBusSource = {
-    MICROBIT_ID_BUTTON_A: 1,
-    MICROBIT_ID_BUTTON_B: 2,
-    MICROBIT_ID_BUTTON_AB: 26,
-    MICROBIT_ID_RADIO: 29,
-    MICROBIT_ID_GESTURE: 27,
-    MICROBIT_ID_ACCELEROMETER: 4,
-    MICROBIT_ID_IO_P0: 7,
-    MICROBIT_ID_IO_P1: 8,
-    MICROBIT_ID_IO_P2: 9,
-    MICROBIT_ID_IO_P3: 10,
-    MICROBIT_ID_IO_P4: 11,
-    MICROBIT_ID_IO_P5: 12,
-    MICROBIT_ID_IO_P6: 13,
-    MICROBIT_ID_IO_P7: 14,
-    MICROBIT_ID_IO_P8: 15,
-    MICROBIT_ID_IO_P9: 16,
-    MICROBIT_ID_IO_P10: 17,
-    MICROBIT_ID_IO_P11: 18,
-    MICROBIT_ID_IO_P12: 19,
-    MICROBIT_ID_IO_P13: 20,
-    MICROBIT_ID_IO_P14: 21,
-    MICROBIT_ID_IO_P15: 22,
-    MICROBIT_ID_IO_P16: 23,
-    MICROBIT_ID_IO_P19: 24,
-    MICROBIT_ID_IO_P20: 25,
-    MES_DEVICE_INFO_ID: 1103,
-    MES_SIGNAL_STRENGTH_ID: 1101,
-    MES_DPAD_CONTROLLER_ID: 1104,
-    MES_BROADCAST_GENERAL_ID: 2000,
+    MICROBIT_ID_BUTTON_A: '1',
+    MICROBIT_ID_BUTTON_B: '2',
+    MICROBIT_ID_BUTTON_AB: '26',
+    MICROBIT_ID_RADIO: '29',
+    MICROBIT_ID_GESTURE: '27',
+    MICROBIT_ID_ACCELEROMETER: '4',
+    MICROBIT_ID_IO_P0: '7',
+    MICROBIT_ID_IO_P1: '8',
+    MICROBIT_ID_IO_P2: '9',
+    MICROBIT_ID_IO_P3: '10',
+    MICROBIT_ID_IO_P4: '11',
+    MICROBIT_ID_IO_P5: '12',
+    MICROBIT_ID_IO_P6: '13',
+    MICROBIT_ID_IO_P7: '14',
+    MICROBIT_ID_IO_P8: '15',
+    MICROBIT_ID_IO_P9: '16',
+    MICROBIT_ID_IO_P10: '17',
+    MICROBIT_ID_IO_P11: '18',
+    MICROBIT_ID_IO_P12: '19',
+    MICROBIT_ID_IO_P13: '20',
+    MICROBIT_ID_IO_P14: '21',
+    MICROBIT_ID_IO_P15: '22',
+    MICROBIT_ID_IO_P16: '23',
+    MICROBIT_ID_IO_P19: '24',
+    MICROBIT_ID_IO_P20: '25',
+    MES_DEVICE_INFO_ID: '1103',
+    MES_SIGNAL_STRENGTH_ID: '1101',
+    MES_DPAD_CONTROLLER_ID: '1104',
+    MES_BROADCAST_GENERAL_ID: '2000',
 }
 
 const MicrobitRadioEventBusValue = {
-    MICROBIT_EVT_ANY: 0,
-    MICROBIT_BUTTON_EVT_CLICK: 3,
-    MICROBIT_RADIO_EVT_DATAGRAM: 1,
-    MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE: 1,
-    MICROBIT_PIN_EVT_RISE: 2,
-    MICROBIT_PIN_EVT_FALL: 3,
-    MICROBIT_PIN_EVT_PULSE_HI: 4,
-    MICROBIT_PIN_EVT_PULSE_LO: 5,
-    MES_ALERT_EVT_ALARM1: 6,
-    MES_ALERT_EVT_ALARM2: 7,
-    MES_ALERT_EVT_ALARM3: 8,
-    MES_ALERT_EVT_ALARM4: 9,
-    MES_ALERT_EVT_ALARM5: 10,
-    MES_ALERT_EVT_ALARM6: 11,
-    MES_ALERT_EVT_DISPLAY_TOAST: 1,
-    MES_ALERT_EVT_FIND_MY_PHONE: 5,
-    MES_ALERT_EVT_PLAY_RINGTONE: 4,
-    MES_ALERT_EVT_PLAY_SOUND: 3,
-    MES_ALERT_EVT_VIBRATE: 2,
-    MES_CAMERA_EVT_LAUNCH_PHOTO_MODE: 1,
-    MES_CAMERA_EVT_LAUNCH_VIDEO_MODE: 2,
-    MES_CAMERA_EVT_START_VIDEO_CAPTURE: 4,
-    MES_CAMERA_EVT_STOP_PHOTO_MODE: 6,
-    MES_CAMERA_EVT_STOP_VIDEO_CAPTURE: 5,
-    MES_CAMERA_EVT_STOP_VIDEO_MODE: 7,
-    MES_CAMERA_EVT_TAKE_PHOTO: 3,
-    MES_CAMERA_EVT_TOGGLE_FRONT_REAR: 8,
-    MES_DEVICE_DISPLAY_OFF: 5,
-    MES_DEVICE_DISPLAY_ON: 6,
-    MES_DEVICE_GESTURE_DEVICE_SHAKEN: 4,
-    MES_DEVICE_INCOMING_CALL: 7,
-    MES_DEVICE_INCOMING_MESSAGE: 8,
-    MES_DEVICE_ORIENTATION_LANDSCAPE: 1,
-    MES_DEVICE_ORIENTATION_PORTRAIT: 2,
-    MES_DPAD_BUTTON_1_DOWN: 9,
-    MES_DPAD_BUTTON_1_UP: 10,
-    MES_DPAD_BUTTON_2_DOWN: 11,
-    MES_DPAD_BUTTON_2_UP: 12,
-    MES_DPAD_BUTTON_3_DOWN: 13,
-    MES_DPAD_BUTTON_3_UP: 14,
-    MES_DPAD_BUTTON_4_DOWN: 15,
-    MES_DPAD_BUTTON_4_UP: 16,
-    MES_DPAD_BUTTON_A_DOWN: 1,
-    MES_DPAD_BUTTON_A_UP: 2,
-    MES_DPAD_BUTTON_B_DOWN: 3,
-    MES_DPAD_BUTTON_B_UP: 4,
-    MES_DPAD_BUTTON_C_DOWN: 5,
-    MES_DPAD_BUTTON_C_UP: 6,
-    MES_DPAD_BUTTON_D_DOWN: 7,
-    MES_DPAD_BUTTON_D_UP: 8,
-    MES_REMOTE_CONTROL_EVT_FORWARD: 6,
-    MES_REMOTE_CONTROL_EVT_NEXTTRACK: 4,
-    MES_REMOTE_CONTROL_EVT_PAUSE: 2,
-    MES_REMOTE_CONTROL_EVT_PLAY: 1,
-    MES_REMOTE_CONTROL_EVT_PREVTRACK: 5,
-    MES_REMOTE_CONTROL_EVT_REWIND: 7,
-    MES_REMOTE_CONTROL_EVT_STOP: 3,
-    MES_REMOTE_CONTROL_EVT_VOLUMEDOWN: 9,
-    MES_REMOTE_CONTROL_EVT_VOLUMEUP: 8,
+    MICROBIT_EVT_ANY: '0',
+    MICROBIT_BUTTON_EVT_CLICK: '3',
+    MICROBIT_RADIO_EVT_DATAGRAM: '1',
+    MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE: '1',
+    MICROBIT_PIN_EVT_RISE: '2',
+    MICROBIT_PIN_EVT_FALL: '3',
+    MICROBIT_PIN_EVT_PULSE_HI: '4',
+    MICROBIT_PIN_EVT_PULSE_LO: '5',
+    MES_ALERT_EVT_ALARM1: '6',
+    MES_ALERT_EVT_ALARM2: '7',
+    MES_ALERT_EVT_ALARM3: '8',
+    MES_ALERT_EVT_ALARM4: '9',
+    MES_ALERT_EVT_ALARM5: '10',
+    MES_ALERT_EVT_ALARM6: '11',
+    MES_ALERT_EVT_DISPLAY_TOAST: '1',
+    MES_ALERT_EVT_FIND_MY_PHONE: '5',
+    MES_ALERT_EVT_PLAY_RINGTONE: '4',
+    MES_ALERT_EVT_PLAY_SOUND: '3',
+    MES_ALERT_EVT_VIBRATE: '2',
+    MES_CAMERA_EVT_LAUNCH_PHOTO_MODE: '1',
+    MES_CAMERA_EVT_LAUNCH_VIDEO_MODE: '2',
+    MES_CAMERA_EVT_START_VIDEO_CAPTURE: '4',
+    MES_CAMERA_EVT_STOP_PHOTO_MODE: '6',
+    MES_CAMERA_EVT_STOP_VIDEO_CAPTURE: '5',
+    MES_CAMERA_EVT_STOP_VIDEO_MODE: '7',
+    MES_CAMERA_EVT_TAKE_PHOTO: '3',
+    MES_CAMERA_EVT_TOGGLE_FRONT_REAR: '8',
+    MES_DEVICE_DISPLAY_OFF: '5',
+    MES_DEVICE_DISPLAY_ON: '6',
+    MES_DEVICE_GESTURE_DEVICE_SHAKEN: '4',
+    MES_DEVICE_INCOMING_CALL: '7',
+    MES_DEVICE_INCOMING_MESSAGE: '8',
+    MES_DEVICE_ORIENTATION_LANDSCAPE: '1',
+    MES_DEVICE_ORIENTATION_PORTRAIT: '2',
+    MES_DPAD_BUTTON_1_DOWN: '9',
+    MES_DPAD_BUTTON_1_UP: '10',
+    MES_DPAD_BUTTON_2_DOWN: '11',
+    MES_DPAD_BUTTON_2_UP: '12',
+    MES_DPAD_BUTTON_3_DOWN: '13',
+    MES_DPAD_BUTTON_3_UP: '14',
+    MES_DPAD_BUTTON_4_DOWN: '15',
+    MES_DPAD_BUTTON_4_UP: '16',
+    MES_DPAD_BUTTON_A_DOWN: '1',
+    MES_DPAD_BUTTON_A_UP: '2',
+    MES_DPAD_BUTTON_B_DOWN: '3',
+    MES_DPAD_BUTTON_B_UP: '4',
+    MES_DPAD_BUTTON_C_DOWN: '5',
+    MES_DPAD_BUTTON_C_UP: '6',
+    MES_DPAD_BUTTON_D_DOWN: '7',
+    MES_DPAD_BUTTON_D_UP: '8',
+    MES_REMOTE_CONTROL_EVT_FORWARD: '6',
+    MES_REMOTE_CONTROL_EVT_NEXTTRACK: '4',
+    MES_REMOTE_CONTROL_EVT_PAUSE: '2',
+    MES_REMOTE_CONTROL_EVT_PLAY: '1',
+    MES_REMOTE_CONTROL_EVT_PREVTRACK: '5',
+    MES_REMOTE_CONTROL_EVT_REWIND: '7',
+    MES_REMOTE_CONTROL_EVT_STOP: '3',
+    MES_REMOTE_CONTROL_EVT_VOLUMEDOWN: '9',
+    MES_REMOTE_CONTROL_EVT_VOLUMEUP: '8',
 }
 
 class Scratch3MicroBitRadioBlocks {
@@ -382,240 +384,240 @@ class Scratch3MicroBitRadioBlocks {
     get EVENT_BUS_VALUES_MENU() {
         return [
             {
-                text: 'MICROBIT_EVT_ANY = 0',
-                value: MicrobitRadioEventBusSource.MICROBIT_EVT_ANY
+                text: 'MICROBIT_EVT_ANY',
+                value: MicrobitRadioEventBusValue.MICROBIT_EVT_ANY
             },
             {
                 text: 'MICROBIT_BUTTON_EVT_CLICK',
-                value: MicrobitRadioEventBusSource.MICROBIT_BUTTON_EVT_CLICK
+                value: MicrobitRadioEventBusValue.MICROBIT_BUTTON_EVT_CLICK
             },
             {
                 text: 'MICROBIT_RADIO_EVT_DATAGRAM',
-                value: MicrobitRadioEventBusSource.MICROBIT_RADIO_EVT_DATAGRAM
+                value: MicrobitRadioEventBusValue.MICROBIT_RADIO_EVT_DATAGRAM
             },
             {
                 text: 'MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE',
-                value: MicrobitRadioEventBusSource.MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE
+                value: MicrobitRadioEventBusValue.MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE
             },
             {
                 text: 'MICROBIT_PIN_EVT_RISE',
-                value: MicrobitRadioEventBusSource.MICROBIT_PIN_EVT_RISE
+                value: MicrobitRadioEventBusValue.MICROBIT_PIN_EVT_RISE
             },
             {
                 text: 'MICROBIT_PIN_EVT_FALL',
-                value: MicrobitRadioEventBusSource.MICROBIT_PIN_EVT_FALL
+                value: MicrobitRadioEventBusValue.MICROBIT_PIN_EVT_FALL
             },
             {
                 text: 'MICROBIT_PIN_EVT_PULSE_HI',
-                value: MicrobitRadioEventBusSource.MICROBIT_PIN_EVT_PULSE_HI
+                value: MicrobitRadioEventBusValue.MICROBIT_PIN_EVT_PULSE_HI
             },
             {
                 text: 'MICROBIT_PIN_EVT_PULSE_LO',
-                value: MicrobitRadioEventBusSource.MICROBIT_PIN_EVT_PULSE_LO
+                value: MicrobitRadioEventBusValue.MICROBIT_PIN_EVT_PULSE_LO
             },
             {
                 text: 'MES_ALERT_EVT_ALARM1',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM1
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM1
             },
             {
                 text: 'MES_ALERT_EVT_ALARM2',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM2
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM2
             },
             {
                 text: 'MES_ALERT_EVT_ALARM3',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM3
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM3
             },
             {
                 text: 'MES_ALERT_EVT_ALARM4',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM4
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM4
             },
             {
                 text: 'MES_ALERT_EVT_ALARM5',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM5
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM5
             },
             {
                 text: 'MES_ALERT_EVT_ALARM6',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_ALARM6
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_ALARM6
             },
             {
                 text: 'MES_ALERT_EVT_DISPLAY_TOAST',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_DISPLAY_TOAST
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_DISPLAY_TOAST
             },
             {
                 text: 'MES_ALERT_EVT_FIND_MY_PHONE',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_FIND_MY_PHONE
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_FIND_MY_PHONE
             },
             {
                 text: 'MES_ALERT_EVT_PLAY_RINGTONE',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_PLAY_RINGTONE
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_PLAY_RINGTONE
             },
             {
                 text: 'MES_ALERT_EVT_PLAY_SOUND',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_PLAY_SOUND
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_PLAY_SOUND
             },
             {
                 text: 'MES_ALERT_EVT_VIBRATE',
-                value: MicrobitRadioEventBusSource.MES_ALERT_EVT_VIBRATE
+                value: MicrobitRadioEventBusValue.MES_ALERT_EVT_VIBRATE
             },
             {
                 text: 'MES_CAMERA_EVT_LAUNCH_PHOTO_MODE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_LAUNCH_PHOTO_MODE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_LAUNCH_PHOTO_MODE
             },
             {
                 text: 'MES_CAMERA_EVT_LAUNCH_VIDEO_MODE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_LAUNCH_VIDEO_MODE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_LAUNCH_VIDEO_MODE
             },
             {
                 text: 'MES_CAMERA_EVT_START_VIDEO_CAPTURE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_START_VIDEO_CAPTURE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_START_VIDEO_CAPTURE
             },
             {
                 text: 'MES_CAMERA_EVT_STOP_PHOTO_MODE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_STOP_PHOTO_MODE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_STOP_PHOTO_MODE
             },
             {
                 text: 'MES_CAMERA_EVT_STOP_VIDEO_CAPTURE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_STOP_VIDEO_CAPTURE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_STOP_VIDEO_CAPTURE
             },
             {
                 text: 'MES_CAMERA_EVT_STOP_VIDEO_MODE',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_STOP_VIDEO_MODE
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_STOP_VIDEO_MODE
             },
             {
                 text: 'MES_CAMERA_EVT_TAKE_PHOTO',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_TAKE_PHOTO
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_TAKE_PHOTO
             },
             {
                 text: 'MES_CAMERA_EVT_TOGGLE_FRONT_REAR',
-                value: MicrobitRadioEventBusSource.MES_CAMERA_EVT_TOGGLE_FRONT_REAR
+                value: MicrobitRadioEventBusValue.MES_CAMERA_EVT_TOGGLE_FRONT_REAR
             },
             {
                 text: 'MES_DEVICE_DISPLAY_OFF',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_DISPLAY_OFF
+                value: MicrobitRadioEventBusValue.MES_DEVICE_DISPLAY_OFF
             },
             {
                 text: 'MES_DEVICE_DISPLAY_ON',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_DISPLAY_ON
+                value: MicrobitRadioEventBusValue.MES_DEVICE_DISPLAY_ON
             },
             {
                 text: 'MES_DEVICE_GESTURE_DEVICE_SHAKEN',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_GESTURE_DEVICE_SHAKEN
+                value: MicrobitRadioEventBusValue.MES_DEVICE_GESTURE_DEVICE_SHAKEN
             },
             {
                 text: 'MES_DEVICE_INCOMING_CALL',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_INCOMING_CALL
+                value: MicrobitRadioEventBusValue.MES_DEVICE_INCOMING_CALL
             },
             {
                 text: 'MES_DEVICE_INCOMING_MESSAGE',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_INCOMING_MESSAGE
+                value: MicrobitRadioEventBusValue.MES_DEVICE_INCOMING_MESSAGE
             },
             {
                 text: 'MES_DEVICE_ORIENTATION_LANDSCAPE',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_ORIENTATION_LANDSCAPE
+                value: MicrobitRadioEventBusValue.MES_DEVICE_ORIENTATION_LANDSCAPE
             },
             {
                 text: 'MES_DEVICE_ORIENTATION_PORTRAIT',
-                value: MicrobitRadioEventBusSource.MES_DEVICE_ORIENTATION_PORTRAIT
+                value: MicrobitRadioEventBusValue.MES_DEVICE_ORIENTATION_PORTRAIT
             },
             {
                 text: 'MES_DPAD_BUTTON_1_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_1_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_1_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_1_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_1_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_1_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_2_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_2_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_2_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_2_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_2_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_2_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_3_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_3_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_3_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_3_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_3_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_3_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_4_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_4_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_4_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_4_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_4_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_4_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_A_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_A_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_A_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_A_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_A_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_A_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_B_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_B_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_B_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_B_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_B_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_B_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_C_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_C_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_C_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_C_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_C_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_C_UP
             },
             {
                 text: 'MES_DPAD_BUTTON_D_DOWN',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_D_DOWN
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_D_DOWN
             },
             {
                 text: 'MES_DPAD_BUTTON_D_UP',
-                value: MicrobitRadioEventBusSource.MES_DPAD_BUTTON_D_UP
+                value: MicrobitRadioEventBusValue.MES_DPAD_BUTTON_D_UP
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_FORWARD',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_FORWARD
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_FORWARD
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_NEXTTRACK',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_NEXTTRACK
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_NEXTTRACK
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_PAUSE',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_PAUSE
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_PAUSE
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_PLAY',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_PLAY
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_PLAY
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_PREVTRACK',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_PREVTRACK
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_PREVTRACK
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_REWIND',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_REWIND
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_REWIND
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_STOP',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_STOP
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_STOP
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_VOLUMEDOWN',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_VOLUMEDOWN
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_VOLUMEDOWN
             },
             {
                 text: 'MES_REMOTE_CONTROL_EVT_VOLUMEUP',
-                value: MicrobitRadioEventBusSource.MES_REMOTE_CONTROL_EVT_VOLUMEUP
+                value: MicrobitRadioEventBusValue.MES_REMOTE_CONTROL_EVT_VOLUMEUP
             },
         ];
     }
@@ -634,18 +636,6 @@ class Scratch3MicroBitRadioBlocks {
             menuIconURI: blockIconURI,
             blocks: [
                 {
-                    opcode: 'setFrequencyBand',
-                    blockType: 'command',
-                    text: 'set frequency band to [BAND_NUM]',
-                    arguments: {
-                        BAND_NUM: {
-                            type: 'number',
-                            menu: 'bandMenu',
-                            defaultValue: '0'
-                        },
-                    }
-                },
-                {
                     opcode: 'setGroup',
                     blockType: 'command',
                     text: 'set group to [GROUP_NUM]',
@@ -653,51 +643,11 @@ class Scratch3MicroBitRadioBlocks {
                         GROUP_NUM: {
                             type: 'number',
                             menu: 'groupNumMenu',
-                            defaultValue: '0',
-                        },
-                    }
-                },
-                {
-                    opcode: 'setTransmitPower',
-                    blockType: 'command',
-                    text: 'set transmit power to [POWER_NUM]',
-                    arguments: {
-                        POWER_NUM: {
-                            type: 'number',
-                            menu: 'transmitPowerMenu',
-                            defaultValue: '6'
-                        },
-                    }
-                },
-                {
-                    opcode: 'setTransmitSerialNumber',
-                    blockType: 'command',
-                    text: 'transmit serial number [TRANSMIT]',
-                    arguments: {
-                        TRANSMIT: {
-                            type: 'string',
-                            menu: 'transmitSerialNumberMenu',
-                            default: MicrobitRadioTransmitSerialNumber.NO
+                            defaultValue: 0,
                         },
                     }
                 },
                 '---',
-                {   opcode: 'sendEvent',
-                    blockType: 'command',
-                    text: 'send event from source [SOURCE] with value [VALUE]',
-                    arguments: {
-                        SOURCE: {
-                            type: 'number',
-                            menu: 'eventBusSourceMenu',
-                            default: MicrobitRadioEventBusSource.MICROBIT_ID_BUTTON_A
-                        },
-                        VALUE: {
-                            type: 'number',
-                            menu: 'eventBusValueMenu',
-                            default: MicrobitRadioEventBusValue.MICROBIT_EVT_ANY
-                        }
-                    }
-                },
                 {
                     opcode: 'sendNumber',
                     blockType: 'command',
@@ -706,17 +656,6 @@ class Scratch3MicroBitRadioBlocks {
                         NUMBER: {
                             type: 'number',
                             defaultValue: "0"
-                        },
-                    }
-                },
-                {
-                    opcode: 'sendString',
-                    blockType: 'command',
-                    text: 'send string [STRING]',
-                    arguments: {
-                        STRING: {
-                            type: 'string',
-                            defaultValue: ' '
                         },
                     }
                 },
@@ -735,6 +674,17 @@ class Scratch3MicroBitRadioBlocks {
                         },
                     }
                 },
+                {
+                    opcode: 'sendString',
+                    blockType: 'command',
+                    text: 'send string [STRING]',
+                    arguments: {
+                        STRING: {
+                            type: 'string',
+                            defaultValue: ' '
+                        },
+                    }
+                },
                 '---',
                 {
                     opcode: 'whenNumberReceived',
@@ -742,14 +692,14 @@ class Scratch3MicroBitRadioBlocks {
                     text: 'when number received',
                 },
                 {
-                    opcode: 'whenStringReceived',
-                    blockType: 'hat',
-                    text: 'when string received',
-                },
-                {
                     opcode: 'whenValuePairReceived',
                     blockType: 'hat',
                     text: 'when value pair received',
+                },
+                {
+                    opcode: 'whenStringReceived',
+                    blockType: 'hat',
+                    text: 'when string received',
                 },
                 '---',
                 {
@@ -763,14 +713,76 @@ class Scratch3MicroBitRadioBlocks {
                     text: 'received string',
                 },
                 {
-                    opcode: 'receivedSerialNumber',
-                    blockType: 'reporter',
-                    text: 'received serial number',
-                },
-                {
                     opcode: 'receivedSignalStrength',
                     blockType: 'reporter',
                     text: 'received signal strength',
+                },
+                '---',
+                {
+                    opcode: 'setFrequencyBand',
+                    blockType: 'command',
+                    text: 'set frequency band to [BAND_NUM]',
+                    arguments: {
+                        BAND_NUM: {
+                            type: 'number',
+                            menu: 'bandMenu',
+                            defaultValue: 0
+                        },
+                    }
+                },
+                {
+                    opcode: 'setTransmitPower',
+                    blockType: 'command',
+                    text: 'set transmit power to [POWER_NUM]',
+                    arguments: {
+                        POWER_NUM: {
+                            type: 'number',
+                            menu: 'transmitPowerMenu',
+                            defaultValue: 6
+                        },
+                    }
+                },
+                {
+                    opcode: 'setTransmitSerialNumber',
+                    blockType: 'command',
+                    text: 'transmit serial number [TRANSMIT]',
+                    arguments: {
+                        TRANSMIT: {
+                            type: 'string',
+                            menu: 'transmitSerialNumberMenu',
+                            default: 'no'
+                        },
+                    }
+                },
+                '---',
+                {   
+                    opcode: 'sendEvent',
+                    blockType: 'command',
+                    text: 'send event from source [SOURCE] with value [VALUE]',
+                    arguments: {
+                        SOURCE: {
+                            type: 'string',
+                            menu: 'eventBusSourceMenu',
+                            default: MicrobitRadioEventBusSource.MICROBIT_ID_BUTTON_A
+                        },
+                        VALUE: {
+                            type: 'number',
+                            menu: 'eventBusValueMenu',
+                            default: MicrobitRadioEventBusValue.MICROBIT_EVT_ANY
+                        }
+                    }
+                },
+                '---',
+                {
+                    opcode: 'whenHeartbeatReceived',
+                    blockType: 'hat',
+                    text: 'when heartbeat received',
+                },
+                '---',
+                {
+                    opcode: 'receivedSerialNumber',
+                    blockType: 'reporter',
+                    text: 'received serial number',
                 },
                 {
                     opcode: 'receivedTime',
@@ -886,6 +898,15 @@ class Scratch3MicroBitRadioBlocks {
                 resolve();
             }, radioSendInterval);
         });
+    }
+
+    whenHeartbeatReceived() {
+        if (this._peripheral._heartbeatRecevied) {
+            this._peripheral._heartbeatRecevied = false;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     whenNumberReceived() {
