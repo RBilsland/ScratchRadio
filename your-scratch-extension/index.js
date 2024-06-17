@@ -47,7 +47,7 @@ class MicroBitRadio {
         this._receivedData = {};
         this._heartbeatRecevied = false;
 
-        if (window.confirm('Click ok and then select the Micro:bit that is the Radio Gateway')) {
+        if (window.confirm('Click ok and then select the gateway micro:bit from the list displayed')) {
             uBitWebUSB.connectDevice(this, this.eventHandler);
         }
     }
