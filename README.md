@@ -10,7 +10,7 @@ Wanting to make the use of this as easy as possible I decided to use the browser
 
 The extension itself if made up of 3 layers, a base layer to handle communicating with the micro:bit, a middle layer that handles the sending and receiving of commands and the top layer that interfaces with Scratch.
 
-The base layer is primarily built on a modified version of the ????? library by ?????. I did start off coding this area myself but while investigating what I needed to do I came across this most useful library. At this point I decided not to re-invent any wheels and just tweaked the wheel slightly to better suit my requirements.
+The base layer is primarily built on a modified version of the [microbit-webusb library by Bill Siever](https://github.com/bsiever/microbit-webusb). I did start off coding this area myself but while investigating what I needed to do I came across this most useful library. At this point I decided not to re-invent any wheels and just tweaked the wheel slightly to better suit my requirements.
 
 The middle layer deals with the formatting of commands to send and the decoding of commands received. As communications with the micro:bit are over a serial connection this just meant the sending and receiving of strings. The strings are field delimited using an ASCII character 30 hopefully meaning that it won't be included in a string and cause chaos. Commands sent are done so immediately but due to the way that Scratch deals with raising events received commands are placed in a queue for processing by Scratch.
 
@@ -20,8 +20,10 @@ The gateways design is simple converting received radio commands into serial com
 
 ![An image showing the block code that makes up the gateway](./images/Microbit_Gateway_Blocks.png)
 ##Developing The Extension
-Unfrotunately I knew that I would not be able to include my extensions into the main Scratch site so I started looking into where and how was currently best. A big timesaver that I ended up using is ????? GitHub template for creating Scratch extensions. He's taken all the legwork out of setting up an environment for development and where to host the final result. You code and test your extensions in GitHub codespaces before finally hosting it in GitHub pages. To make the process as easy as possible he provided scripts to automate all the setup / build / deploy tasks too.
+Unfrotunately I knew that I would not be able to include my extensions into the main Scratch site so I started looking into where and how was currently best. A big timesaver that I ended up using is the [scratch-extension-development GitHub template by Dale Lane](https://github.com/dalelane/scratch-extension-development) for creating Scratch extensions. He's taken all the legwork out of setting up an environment for development and where to host the final result. You code and test your extensions in GitHub codespaces before finally hosting it in GitHub pages. To make the process as easy as possible he provided scripts to automate all the setup / build / deploy tasks too.
 ##Running The Gateway
 Make sure you have downloaded and then copyed the [microbit-RadioGateway.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioGateway.hex?raw=True) file to a microbit. Next make sure the micro:bit is connected to the computer using a USB cable. If you have just programmed it from MakeCode then unplug and then re-plug it back in to make sure it's ready for a new connection.
 
-Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) and choose to add extension. 
+Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
+##Running My Demo
+To run my demo download and then copy the [microbit-RadioDemo.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioDemo.hex?raw=True) file to another micro:bit.  
