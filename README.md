@@ -27,6 +27,7 @@ Make sure you have downloaded and then copyed the [microbit-RadioGateway.hex](ht
 Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) using either Chrome or Edge and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
 ##Running My Demo
 To run my demo download and then copy the [microbit-RadioDemo.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioDemo.hex?raw=True) file to another micro:bit. In Scratch create the following blocks.
+
 ![Scratch micro:bit radio demo blocks](./images/Scratch_Demo_Blocks.png)
 
 If everything is working then clicking on Felix should sent the message "Hello micro:bit" to the micro:bit and clicking button A on the micro:bit should send the message "Hello Felix" to Scratch.
