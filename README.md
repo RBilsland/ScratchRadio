@@ -1,18 +1,27 @@
-# Development environment for creating unofficial Scratch extensions
+# Scratch Radio
+## Initial Idea
+To bring the micro:bit's radio commands to Scratch to allow the two enviroments to communicate with each other.
+## Hardware Design
+The most straightforward, widely accessible and least problomatic option was to use a micro:bit connected to the computer running scratch via a USB cable, acting as a gateway between the two environments.
 
-This is a repo for [my workshop](https://www.eventbrite.co.uk/e/workshop-write-your-own-scratch-extension-tickets-533502218497) at the [Raspberry Pi Clubs Conference](https://www.raspberrypi.org/clubs-conference-2023/) - about how to create your own custom blocks for Scratch.
+![A diagram representing the Scratch environment being connected to a micro:bit over a USB cable](./images/Scratch_USB_microbit.png)
+## Extension Design
+Wanting to make the use of this as easy as possible I decided to use the browser WebUSB API to handle communications with the micro:bit. While this functionality currently isn't supported by all browser I thought that it being available in Chrome and Edge was enough. Hopefully this situation will improve over time, to see the current level of support within all browserto visit [Can I Use, WebUSB](https://caniuse.com/webusb). Due to the browser handling everything the is no need for anything to be locally installed (very important when hardware is locked down and install rights limited).
 
-This repo has [instructions](./INSTRUCTIONS.md), a template extension, and an online hosted development environment, so you can create your own Scratch extensions using only a web browser. No local developmnent tools or other software is needed.
+The extension itself if made up of 3 layers, a base layer to handle communicating with the micro:bit, a middle layer that handles the sending and receiving of commands and the top layer that interfaces with Scratch.
 
-I've included step-by-step instructions for building different types of Scratch extensions, including Scratch blocks based on web APIs, and Scratch blocks based on JavaScript modules from npm.
+The base layer is primarily built on a modified version of the ????? library by ?????. I did start off coding this area myself but while investigating what I needed to do I came across this most useful library. At this point I decided not to re-invent any wheels and just tweaked the wheel slightly to better suit my requirements.
 
-I created it for educators and coding group volunteers, who would like to customize Scratch for their students by giving them new and unique blocks to create with. In particular, I wanted to make this accessible to people who perhaps don't necessarily think of themselves as developers and wouldn't otherwise know how to clone the Scratch Team repos and start hacking it.
+The middle layer deals with the formatting of commands to send and the decoding of commands received. As communications with the micro:bit are over a serial connection this just meant the sending and receiving of strings. The strings are field delimited using an ASCII character 30 hopefully meaning that it won't be included in a string and cause chaos. Commands sent are done so immediately but due to the way that Scratch deals with raising events received commands are placed in a queue for processing by Scratch.
 
-Go to [INSTRUCTIONS.md](./INSTRUCTIONS.md) to find a written step-by-step guide, or watch me step through the process in [this video](https://youtu.be/bX9ZqhuxtnI).
+The top layer is mainly taken up by the extensions block definition and then interfacing with the middle layer. As mentioned above commands sent are sent immediately but, when polled, the events check to see if there is anything queued and if so pulls the oldest off the queue, populates the received fields and raises the event. There is an additional heartbeat event that is raised by the gateway to show it is still there and working.
+##Gateway Design
+The gateways design is simple converting received radio commands into serial commands and visa versa. This allows the micro:bit's radio to act like it is directly connected to Scratch. On top of the standard radio commands / events there are a couple of additional functions. The first receives a request the check if the gateways is there and then responses appropriately while the second is a heartbeat message that is sent every five seconds to confirm it's still there and alive. I wrote this too in blocks to allow people to easier understand what is happening. The .hex file of this is linked to below.
 
-[![screenshot](./docs/63-testing.png)](https://youtu.be/bX9ZqhuxtnI)
+![An image showing the block code that makes up the gateway](./images/Microbit_Gateway_Blocks.png)
+##Developing The Extension
+Unfrotunately I knew that I would not be able to include my extensions into the main Scratch site so I started looking into where and how was currently best. A big timesaver that I ended up using is ????? GitHub template for creating Scratch extensions. He's taken all the legwork out of setting up an environment for development and where to host the final result. You code and test your extensions in GitHub codespaces before finally hosting it in GitHub pages. To make the process as easy as possible he provided scripts to automate all the setup / build / deploy tasks too.
+##Running The Gateway
+Make sure you have downloaded and then copyed the [microbit-RadioGateway.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioGateway.hex?raw=True) file to a microbit. Next make sure the micro:bit is connected to the computer using a USB cable. If you have just programmed it from MakeCode then unplug and then re-plug it back in to make sure it's ready for a new connection.
 
-I've wrapped all the complicated bits in scripts that set everything up, and prepared an online Scratch extension development environment – so everything can be done in a web browser without having to install or configure anything on your own computer.
-
-If you make something with this, please [let me know](https://github.com/dalelane/scratch-extension-development/issues) - I'd love to hear about it.
-
+Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) and choose to add extension. 
