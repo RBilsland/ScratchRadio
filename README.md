@@ -24,6 +24,15 @@ Unfrotunately I knew that I would not be able to include my extensions into the 
 ##Running The Gateway
 Make sure you have downloaded and then copyed the [microbit-RadioGateway.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioGateway.hex?raw=True) file to a microbit. Next make sure the micro:bit is connected to the computer using a USB cable. If you have just programmed it from MakeCode then unplug and then re-plug it back in to make sure it's ready for a new connection.
 
-Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
+Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) using either Chrome or Edge and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
 ##Running My Demo
-To run my demo download and then copy the [microbit-RadioDemo.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioDemo.hex?raw=True) file to another micro:bit.  
+To run my demo download and then copy the [microbit-RadioDemo.hex](https://github.com/RBilsland/ScratchRadio/blob/main/hex/microbit-RadioDemo.hex?raw=True) file to another micro:bit. In Scratch create the following blocks.
+![Scratch micro:bit radio demo blocks](./images/Scratch_Demo_Blocks.png)
+
+If everything is working then clicking on Felix should sent the message "Hello micro:bit" to the micro:bit and clicking button A on the micro:bit should send the message "Hello Felix" to Scratch.
+
+If you do have issues with getting communications running between Scratch and a micro:bit then just like coding the micro:bit's make sure you are using the same group number on each side. If you are then currently my next suggestion is to refresh the browser and unplug and plug back in again the micro:bit and try again.
+##Known Issues
+Currently I'm aware that loading an .sb3 file back into my version of Scratch that references the radio extension doesn't work, so I'll be looking into that next as it somewhat stop's any long term development. I'l also aware that the whole connecting with the gateway micro:bit could be better so that's on my radar too.
+##Uses
+As the radio communication between Scratch and the micro:but gateway is two way there are many things. Maybe many micro:bits radioing into Scratch showing who put their hand up to answer a question first, maybe controlling a micro:bit controlled robot from a Scratch interface, or maybe allowing communication between multiple Scratch sessions allowing multiplayer gaming.
