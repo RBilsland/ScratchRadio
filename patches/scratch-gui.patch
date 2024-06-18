@@ -21,7 +21,7 @@ index ba18b91..e316f38 100644
 +        extensionId: 'radio',
 +        iconURL: radioIconURL,
 +        insetIconURL: radioInsetIconURL,
-+        description: 'Use the micro:bit Radio blocks within Scratch.',
++        description: 'Use the micro:bit's Radio blocks within Scratch.',
 +        featured: true,
 +        disabled: false
 +    },
