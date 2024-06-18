@@ -6,8 +6,8 @@ index ba18b91..e316f38 100644
  import React from 'react';
  import {FormattedMessage} from 'react-intl';
  
-+import yourExtensionInsetIconURL from './yourextension/your-extension-icon.png';
-+import yourExtensionIconURL from './yourextension/your-extension-background.png';
++import radioInsetIconURL from './radio/radio-icon.png';
++import radioIconURL from './radio/radio-background.png';
 +
  import musicIconURL from './music/music.png';
  import musicInsetIconURL from './music/music-small.svg';
@@ -18,9 +18,9 @@ index ba18b91..e316f38 100644
  export default [
 +    {
 +        name: 'micro:bit Radio',
-+        extensionId: 'yourScratchExtension',
-+        iconURL: yourExtensionIconURL,
-+        insetIconURL: yourExtensionInsetIconURL,
++        extensionId: 'radio',
++        iconURL: radioIconURL,
++        insetIconURL: radioInsetIconURL,
 +        description: 'Use the micro:bit Radio blocks within Scratch.',
 +        featured: true,
 +        disabled: false
