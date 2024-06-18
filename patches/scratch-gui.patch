@@ -18,7 +18,7 @@ index ba18b91..e316f38 100644
  export default [
 +    {
 +        name: 'micro:bit Radio',
-+        extensionId: 'radio',
++        extensionId: 'yourScratchExtension',
 +        iconURL: radioIconURL,
 +        insetIconURL: radioInsetIconURL,
 +        description: 'Use the micro:bit\'s Radio blocks within Scratch.',
