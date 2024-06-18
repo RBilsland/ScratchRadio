@@ -6,8 +6,8 @@ index ba18b91..e316f38 100644
  import React from 'react';
  import {FormattedMessage} from 'react-intl';
  
-+import radioInsetIconURL from './radio/radio-icon.png';
-+import radioIconURL from './radio/radio-background.png';
++import radioInsetIconURL from './your-scratch-extension/radio-icon.png';
++import radioIconURL from './your-scratch-extension/radio-background.png';
 +
  import musicIconURL from './music/music.png';
  import musicInsetIconURL from './music/music-small.svg';
