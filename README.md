@@ -1,4 +1,12 @@
 # Scratch Radio
+## Link To Scratch Radio
+
+For those of you who want to dive straight in head first then here's the link to my version of Scratch that contains my Scratch Radio extension.
+
+**[https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/)**
+
+For everyone else please continue reading.
+
 ## Initial Idea
 To bring the micro:bit's radio commands to Scratch to allow the two environments to communicate with each other.
 
