@@ -35,7 +35,7 @@ The gateways design is simple converting received radio commands into serial com
 Unfortunately I knew that I would not be able to include my extensions into the main Scratch site so I started looking into where and how was currently best. A big timesaver that I ended up using is the [scratch-extension-development GitHub template by Dale Lane](https://github.com/dalelane/scratch-extension-development) for creating Scratch extensions. He's taken all the legwork out of setting up an environment for development and where to host the final result. You code and test your extensions in GitHub codespaces before finally hosting it in GitHub pages. To make the process as easy as possible he provided scripts to automate all the setup / build / deploy tasks too.
 
 ## Running The Gateway
-Make sure you have downloaded and then copied the [microbit-RadioGateway.hex](./hex/microbit-RadioGateway.hex) file to a micro:bit. Next make sure the micro:bit is connected to the computer using a USB cable. If you have just programmed it from MakeCode then unplug and then re-plug it back in to make sure it's ready for a new connection.
+Make sure you have downloaded and then copied the [microbit-RadioGateway.hex](./hex/microbit-RadioGateway.hex?raw=True) file to a micro:bit. Next make sure the micro:bit is connected to the computer using a USB cable. If you have just programmed it from MakeCode then unplug and then re-plug it back in to make sure it's ready for a new connection.
 
 Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) using either Chrome or Edge and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
 
@@ -44,7 +44,7 @@ To run my demo, download and then copy the [microbit-RadioDemo.hex](./hex/microb
 
 ![micro:bit radio demo blocks](./images/microbit_Demo_Blocks.png)
 
-Next download and then load into my version of Scratch the [Scratch-RadioDemo.sb3](./sb3/Scratch-RadioDemo.hex). **REMEMBER TO HAVE YOUR GATEWAY MICRO:BIT CONNECTED WHEN DOING THIS**
+Next download and then load into my version of Scratch the [Scratch-RadioDemo.sb3](./sb3/Scratch-RadioDemo.sb3?raw=True). **REMEMBER TO HAVE YOUR GATEWAY MICRO:BIT CONNECTED WHEN DOING THIS**
 
 ![Scratch micro:bit radio demo blocks](./images/Scratch_Demo_Blocks.png)
 
