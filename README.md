@@ -36,7 +36,7 @@ To run my demo, download and then copy the [microbit-RadioDemo.hex](https://gith
 
 ![micro:bit radio demo blocks](./images/microbit_Demo_Blocks.png)
 
-Next download and then load into my version of Scratch the [Scratch-RadioDemo.hex](https://github.com/RBilsland/ScratchRadio/blob/main/sb3/Scratch-RadioDemo.hex?raw=True). **REMEMBER TO HAVE YOUR GATEWAY MICRO:BIT CONNECTED WHEN DOING THIS**
+Next download and then load into my version of Scratch the [Scratch-RadioDemo.sb3](https://github.com/RBilsland/ScratchRadio/blob/main/sb3/Scratch-RadioDemo.hex?raw=True). **REMEMBER TO HAVE YOUR GATEWAY MICRO:BIT CONNECTED WHEN DOING THIS**
 
 ![Scratch micro:bit radio demo blocks](./images/Scratch_Demo_Blocks.png)
 
