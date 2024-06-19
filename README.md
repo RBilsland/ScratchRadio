@@ -40,7 +40,7 @@ Make sure you have downloaded and then copied the [microbit-RadioGateway.hex](./
 Next visit my version of scratch [https://rbilsland.github.io/ScratchRadio/scratch/](https://rbilsland.github.io/ScratchRadio/scratch/) using either Chrome or Edge and choose to add extension and chose my new extension. You'll be prompted to that you should select your gateway micro:bit, ok this and select your micro:bit. From this point you should be good to go.
 
 ## Running My Demo
-To run my demo, download and then copy the [microbit-RadioDemo.hex](./hex/microbit-RadioDemo.hex) file to another micro:bit.
+To run my demo, download and then copy the [microbit-RadioDemo.hex](./hex/microbit-RadioDemo.hex?raw=True) file to another micro:bit.
 
 ![micro:bit radio demo blocks](./images/microbit_Demo_Blocks.png)
 
