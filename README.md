@@ -60,8 +60,10 @@ If something isn't working then unplug / plug in the micro:bit, refresh the brow
 Currently I'm aware that the whole connecting with the gateway micro:bit could be better so that's on my radar to address.
 
 ## Uses
-As the radio communications between Scratch and the micro:but gateway is two way, there are many things that can be done.
+As radio communications between Scratch and the micro:but gateway is two way, there are many things that could be done with this setup. For example:
 
 * Using multiple micro:bits as quiz answer buttons. When a button is pressed then the persons name is send and shown on Scratch in the order they were received.
 * Controlling a micro:bit robot from a Scratch interface. Sprites clicked and commands sent to the robot move it around.
 * A 2 player Scratch game that is run on two computers. The two versions of Scratch using the radio communications to send player positions to each other.
+
+*Robert Bilsland - 19 June 2024*
